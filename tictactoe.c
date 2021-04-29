@@ -32,27 +32,34 @@ bool checkPlacement(int * placementTuple, char * board[3][3]){
     return value;
 }
 
-bool strcmp3(char* one, char* two, char* three){
-    printf("%s %s %s\n", one, two, three);
-    return strcmp(one,two)==0 && strcmp(two,three)==0;
-}
-
 bool playerWin(char * board[3][3]){
-    if(strcmp3(board[0][0], board[0][1], board[0][2])){
+    bool board1D[] = {
+        board[0][0] != ".",
+        board[0][1] != ".",
+        board[0][2] != ".",
+        board[1][0] != ".",
+        board[1][1] != ".",
+        board[1][2] != ".",
+        board[2][0] != ".",
+        board[2][1] != ".",
+        board[2][2] != "."
+    };
+
+    if(board1D[0] && board1D[1] && board1D[2]){
         return true;
-    } else if(strcmp3(board[1][0], board[1][1], board[1][2])){
+    } else if (board1D[3] && board1D[4] && board1D[5]) {
         return true;
-    } else if(strcmp3(board[2][0], board[2][1], board[2][2])){
+    } else if (board1D[6] && board1D[7] && board1D[8]) {
         return true;
-    } else if(strcmp3(board[0][0], board[1][0], board[2][0])){
+    } else if (board1D[0] && board1D[3] && board1D[6]) {
         return true;
-    } else if(strcmp3(board[0][1], board[1][1], board[2][1])){
+    } else if (board1D[1] && board1D[4] && board1D[7]) {
         return true;
-    } else if(strcmp3(board[0][2], board[1][2], board[2][2])){
+    } else if (board1D[2] && board1D[5] && board1D[8]) {
         return true;
-    } else if(strcmp3(board[0][0], board[1][1], board[2][2])){
+    } else if (board1D[0] && board1D[4] && board1D[8]) {
         return true;
-    } else if(strcmp3(board[0][2], board[1][1], board[2][0])){
+    } else if (board1D[2] && board1D[4] && board1D[6]) {
         return true;
     }
     return false;
